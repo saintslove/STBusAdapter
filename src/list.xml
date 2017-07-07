@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<List>
+    <admin>
+        <IP>127.0.0.1</IP>
+        <IP>172.16.3.201</IP>
+        <IP>210.75.252.138</IP>
+        <IP>172.21.7.231</IP>
+        <IP>172.16.3.100</IP>
+    </admin>
+    <all>
+        <IP>127.0.0.1</IP>
+        <IP>172.16.3.201</IP>
+        <IP>210.75.252.138</IP>
+        <IP>172.16.3.100</IP>
+        <IP>172.16.3.101</IP>
+        <IP>172.16.3.102</IP>
+        <IP>172.16.3.103</IP>
+        <IP>172.16.3.15</IP>
+        <IP>172.16.3.141</IP>
+        <IP>172.16.3.142</IP>
+        <IP>127.16.3.143</IP>
+        <IP>172.20.104.184</IP>
+    </all>
+    <gps>
+    </gps>
+    <warning>
+    </warning>
+    <oper>
+    </oper>
+    <recv_port> 20000 </recv_port>
+    <send_port> 19999 </send_port>
+    <monitoring_port> 19998 </monitoring_port>
+    <client_pwd> siatxdata </client_pwd>
+    <monitor_pwd> siatmonitor </monitor_pwd>
+    <recv_max_conn> 1 </recv_max_conn>
+    <send_max_conn> 50 </send_max_conn>
+    <monitor_max_conn> 10 </monitor_max_conn>
+    <G_max_count> 3 </G_max_count>
+    <DS_pattern> 10.0.64. </DS_pattern>
+    <DS_unit> ShengTing </DS_unit>
+</List>
