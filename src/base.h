@@ -30,7 +30,16 @@ public:
             ,mtx()
             ,data_condition(mtx)
     {}
-
+    void wait_and_pop(T& value)
+    {
+        muduo::MutexLockGuard lock(mtx);
+        if(data_queue.empty())
+        {
+            data_condition.wait();
+        }
+        value = data_queue.front();
+        data_queue.pop();
+    }
     boost::shared_ptr<T> wait_and_pop()
     {
         muduo::MutexLockGuard lock(mtx);
@@ -42,7 +51,15 @@ public:
         data_queue.pop();
         return res;
     }
-
+    bool try_pop(T& value)
+    {
+        muduo::MutexLockGuard lock(mtx);
+        if(data_queue.empty())
+            return false;
+        value = data_queue.front();
+        data_queue.pop();
+        return true;
+    }
     boost::shared_ptr<T> try_pop()
     {
         muduo::MutexLockGuard lock(mtx);
@@ -52,7 +69,6 @@ public:
         data_queue.pop();
         return res;
     }
-
     void push(T value)
     {
         boost::shared_ptr<T> data(boost::make_shared<T>(value));
@@ -60,13 +76,19 @@ public:
         data_queue.push(data);
         data_condition.notifyAll();
     }
-
     int size()
     {
         muduo::MutexLockGuard lock(mtx);
         return data_queue.size();
     }
-
+    void eraser(int count)
+    {
+        muduo::MutexLockGuard lock(mtx);
+        while(data_queue.size() > count)
+        {
+            data_queue.pop();
+        }
+    }
 private:
     std::queue<boost::shared_ptr<T> > data_queue;
     muduo::Condition data_condition;
